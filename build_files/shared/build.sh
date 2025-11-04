@@ -10,7 +10,6 @@ install -Dm0644 -t /etc/ublue-os/ /ctx/flatpaks/*.list
 # Copy Files to Container
 rsync -rvK /ctx/system_files/shared/ /
 mkdir -p /usr/share/ublue-os/homebrew/
-cp /ctx/brew/*.Brewfile /usr/share/ublue-os/homebrew/
 
 # Consolidate Just Files
 cp -r /ctx/just /tmp/just
