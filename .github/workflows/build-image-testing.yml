@@ -26,8 +26,8 @@ jobs:
     with:
       # kernel_pin: 6.14.11-300.fc42.x86_64 ## This is where kernels get pinned.
       brand_name: ${{ matrix.brand_name }}
-      stream_name: stable
-      stream_aliases: testing
+      stream_name: testing
+      stream_aliases: stable
 
   generate-release:
     name: Generate Release

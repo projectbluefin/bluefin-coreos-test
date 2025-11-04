@@ -724,12 +724,7 @@ fedora_version image="bluefin" tag="next" flavor="main" $kernel_pin="":
     set -eou pipefail
     {{ just }} validate {{ image }} {{ tag }} {{ flavor }}
     if [[ ! -f /tmp/manifest.json ]]; then
-        if [[ "{{ tag }}" =~ stable ]]; then
-            # CoreOS does not uses cosign
-            skopeo inspect --retry-times 3 docker://quay.io/fedora/fedora-coreos:stable > /tmp/manifest.json
-        else
-            skopeo inspect --retry-times 3 docker://ghcr.io/ublue-os/base-main:"{{ tag }}" > /tmp/manifest.json
-        fi
+        skopeo inspect --retry-times 3 docker://ghcr.io/ublue-os/base-main:latest > /tmp/manifest.json
     fi
     fedora_version=$(jq -r '.Labels["ostree.linux"]' < /tmp/manifest.json | grep -oP 'fc\K[0-9]+')
     if [[ -n "${kernel_pin:-}" ]]; then
