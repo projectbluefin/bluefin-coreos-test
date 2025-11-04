@@ -30,7 +30,7 @@ jobs:
 
   generate_release:
     name: Generate Release
-    needs: [build-image-gts]
+    needs: [build-image-stable]
     secrets: inherit
     uses: ./.github/workflows/generate-release.yml
     with:
