@@ -14,8 +14,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-image-latest:
-    name: Build Latest Images
+  build-image-next:
+    name: Build Next Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:
@@ -30,8 +30,8 @@ jobs:
 
   generate-release:
     name: Generate Release
-    needs: [build-image-latest]
+    needs: [build-image-next]
     secrets: inherit
     uses: ./.github/workflows/generate-release.yml
     with:
-      stream_name: '["latest"]'
+      stream_name: '["next"]'
