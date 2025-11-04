@@ -2,7 +2,7 @@ version: "1"
 rules:
   - base: stable
     upstream: testing
-    mergeMethod: hardreset
+    mergeMethod: merge
     mergeUnstable: false
     reviewers:
       - castrojo
@@ -12,7 +12,7 @@ rules:
       - tulilirockz
   - base: testing
     upstream: next
-    mergeMethod: hardreset
+    mergeMethod: merge
     mergeUnstable: false
     reviewers:
       - castrojo
