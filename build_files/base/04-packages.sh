@@ -18,7 +18,6 @@ source /ctx/build_files/shared/copr-helpers.sh
 # Base packages from Fedora repos - common to all versions
 FEDORA_PACKAGES=(
     adcli
-    adw-gtk3-theme
     adwaita-fonts-all
     bash-color-prompt
     bcache-tools
