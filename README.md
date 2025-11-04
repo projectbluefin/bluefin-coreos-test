@@ -124,3 +124,5 @@ All incorporated components maintain their respective licenses and attributions.
     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ublue-os/bluefin&type=Date" />
   </picture>
 </a>
+
+This was written in NEXT (test 2)

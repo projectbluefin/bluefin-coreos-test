@@ -20,5 +20,5 @@ rules:
     conflictReviewers:
       - castrojo
       - tulilirockz
-label: ":arrow_heading_down: pull"
-conflictLabel: "merge-conflict"
+label: "promotion"
+conflictLabel: "promotion-conflict"
