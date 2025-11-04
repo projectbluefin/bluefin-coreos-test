@@ -14,7 +14,6 @@ FEDORA_PACKAGES=(
     bcc
     bpftop
     bpftrace
-    cascadia-code-fonts
     cockpit-bridge
     cockpit-machines
     cockpit-networkmanager
