@@ -1,9 +1,8 @@
-name: GTS Images
+name: Stable Images
 on:
   pull_request:
     branches:
-      - main
-      - testing
+      - stable
     paths-ignore:
       - "**.md"
       - ".github/workflows/*iso*.yml"
