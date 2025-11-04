@@ -1,9 +1,8 @@
-name: Stable Images
+name: Testing Images
 on:
   merge_group: # Make Stable-Daily run on merge groups
   pull_request:
     branches:
-      - main
       - testing
     paths-ignore:
       - "**.md"

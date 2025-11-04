@@ -1,10 +1,9 @@
-name: Latest Images
+name: Next Images
 on:
   merge_group:
   pull_request:
     branches:
-      - main
-      - testing
+      - next
     paths-ignore:
       - ".github/workflows/*iso*.yml"
       - ".github/workflows/*validate*.yml"
