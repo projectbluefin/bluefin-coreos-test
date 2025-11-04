@@ -14,8 +14,8 @@ on:
   workflow_call:
 
 jobs:
-  build-image-stable:
-    name: Build Stable Images
+  build-image-gts:
+    name: Build GTS Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:
@@ -30,7 +30,7 @@ jobs:
 
   generate_release:
     name: Generate Release
-    needs: [build-image-stable]
+    needs: [build-image-gts]
     secrets: inherit
     uses: ./.github/workflows/generate-release.yml
     with:
