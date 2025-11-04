@@ -101,7 +101,6 @@ if [[ "${#EXCLUDED_PACKAGES[@]}" -gt 0 ]]; then
     fi
 fi
 
-systemctl enable docker.socket
 systemctl enable podman.socket
 systemctl enable swtpm-workaround.service
 systemctl enable libvirt-workaround.service
