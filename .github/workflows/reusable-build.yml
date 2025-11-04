@@ -15,6 +15,10 @@ on:
         description: "The Fedora Version: gts, stable, or latest"
         required: true
         type: string
+      stream_aliases:
+        description: "Push to these tags as an alias"
+        required: true
+        type: string
       kernel_pin:
         description: "The full kernel version to pin"
         type: string
@@ -187,7 +191,7 @@ jobs:
           command: |
             set -euox pipefail
 
-            for tag in ${{ steps.generate-tags.outputs.alias_tags }}; do
+            for tag in ${{ steps.generate-tags.outputs.alias_tags }} ${{ inputs.stream_aliases }}; do
               sudo -E podman push ${{ env.IMAGE_NAME }}:${tag} ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}:${tag}
             done
 
@@ -204,17 +208,7 @@ jobs:
         run: |
           cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.registry_case.outputs.lowercase }}/${{ env.IMAGE_NAME }}@${TAGS}
         env:
-          TAGS: ${{ steps.push.outputs.outputs && fromJSON(steps.push.outputs.outputs).digest }}
-          COSIGN_EXPERIMENTAL: false
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
-
-      - name: Sign container image
-        if: github.event_name != 'pull_request' && contains(matrix.image_flavor, 'hwe')
-        shell: bash
-        run: |
-          image_name="${{ env.IMAGE_NAME }}"
-        env:
-          TAGS: ${{ steps.push.outputs.outputs && fromJSON(steps.push.outputs.outputs).digest }}
+          TAGS: ${{ steps.push.outputs.outputs && fromJSON(steps.push.outputs.outputs).digest && inputs.stream_aliases }}
           COSIGN_EXPERIMENTAL: false
           COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
 
