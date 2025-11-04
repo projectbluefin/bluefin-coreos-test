@@ -15,8 +15,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-image-stable:
-    name: Build Stable Images
+  build-image-testing:
+    name: Build Testing Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:

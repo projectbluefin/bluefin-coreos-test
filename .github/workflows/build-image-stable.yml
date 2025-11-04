@@ -14,8 +14,8 @@ on:
   workflow_call:
 
 jobs:
-  build-image-gts:
-    name: Build GTS Images
+  build-image-stable:
+    name: Build Stable Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:
