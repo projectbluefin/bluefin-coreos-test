@@ -25,8 +25,8 @@ jobs:
     with:
       image_flavors: '["main", "nvidia-open"]'
       brand_name: ${{ matrix.brand_name }}
-      stream_name: latest
-      stream_aliases: next
+      stream_name: next
+      stream_aliases: latest
 
   generate-release:
     name: Generate Release
