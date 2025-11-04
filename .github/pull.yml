@@ -2,7 +2,7 @@ version: "1"
 rules:
   - base: stable
     upstream: testing
-    mergeMethod: rebase
+    mergeMethod: hardreset
     mergeUnstable: false
     reviewers:
       - castrojo
@@ -12,7 +12,7 @@ rules:
       - tulilirockz
   - base: testing
     upstream: next
-    mergeMethod: rebase
+    mergeMethod: hardreset
     mergeUnstable: false
     reviewers:
       - castrojo
@@ -20,7 +20,5 @@ rules:
     conflictReviewers:
       - castrojo
       - tulilirockz
-  - base: dev
-    upstream: master # Required. Can be a branch in the same forked repo.
 label: "promotion"
 conflictLabel: "promotion-conflict"
