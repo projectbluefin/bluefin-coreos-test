@@ -1,37 +1,38 @@
-name: GTS Images
+name: Latest Images
 on:
+  merge_group:
   pull_request:
     branches:
       - main
       - testing
     paths-ignore:
-      - "**.md"
       - ".github/workflows/*iso*.yml"
       - ".github/workflows/*validate*.yml"
+      - "**.md"
+      - "flatpaks/**"
       - "iso_files/**"
-  schedule:
-    - cron: "0 1 * * TUE" # Every Tuesday at 1:00 AM UTC (same as bluefin-lts)
-  workflow_dispatch:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
-  build-image-gts:
-    name: Build GTS Images
+  build-image-latest:
+    name: Build Latest Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:
       fail-fast: false
       matrix:
-        brand_name: [bluefin]
+        brand_name: ["bluefin"]
     with:
-      # kernel_pin: 6.14.11-200.fc41.x86_64    ## This is where kernels get pinned.
+      image_flavors: '["main", "nvidia-open"]'
       brand_name: ${{ matrix.brand_name }}
-      stream_name: gts
+      stream_name: latest
+      stream_aliases: next
 
-  generate_release:
+  generate-release:
     name: Generate Release
-    needs: [build-image-gts]
+    needs: [build-image-latest]
     secrets: inherit
     uses: ./.github/workflows/generate-release.yml
     with:
-      stream_name: '["gts"]'
+      stream_name: '["latest"]'

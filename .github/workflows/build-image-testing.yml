@@ -1,22 +1,23 @@
-name: Latest Images
+name: Stable Images
 on:
-  merge_group:
+  merge_group: # Make Stable-Daily run on merge groups
   pull_request:
     branches:
       - main
       - testing
     paths-ignore:
+      - "**.md"
       - ".github/workflows/*iso*.yml"
       - ".github/workflows/*validate*.yml"
-      - "**.md"
-      - "flatpaks/**"
       - "iso_files/**"
+  schedule:
+    - cron: "0 1 * * TUE" # Every Tuesday at 1:00 AM UTC (same as bluefin-lts)
   workflow_call:
   workflow_dispatch:
 
 jobs:
-  build-image-latest:
-    name: Build Latest Images
+  build-image-stable:
+    name: Build Stable Images
     uses: ./.github/workflows/reusable-build.yml
     secrets: inherit
     strategy:
@@ -24,14 +25,15 @@ jobs:
       matrix:
         brand_name: ["bluefin"]
     with:
-      image_flavors: '["main", "nvidia-open"]'
+      # kernel_pin: 6.14.11-300.fc42.x86_64 ## This is where kernels get pinned.
       brand_name: ${{ matrix.brand_name }}
-      stream_name: latest
+      stream_name: stable
+      stream_aliases: testing
 
   generate-release:
     name: Generate Release
-    needs: [build-image-latest]
+    needs: [build-image-stable]
     secrets: inherit
     uses: ./.github/workflows/generate-release.yml
     with:
-      stream_name: '["latest"]'
+      stream_name: '["stable", "stable-daily"]'
