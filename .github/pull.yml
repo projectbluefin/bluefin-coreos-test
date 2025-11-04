@@ -1,0 +1,26 @@
+version: "1"
+rules:
+  - base: stable
+    upstream: testing
+    mergeMethod: rebase
+    mergeUnstable: false
+    reviewers:
+      - castrojo
+      - tulilirockz
+    conflictReviewers:
+      - castrojo
+      - tulilirockz
+  - base: testing
+    upstream: next
+    mergeMethod: rebase
+    mergeUnstable: false
+    reviewers:
+      - castrojo
+      - tulilirockz
+    conflictReviewers:
+      - castrojo
+      - tulilirockz
+  - base: dev
+    upstream: master # Required. Can be a branch in the same forked repo.
+label: ":arrow_heading_down: pull"
+conflictLabel: "merge-conflict"
