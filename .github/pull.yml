@@ -20,7 +20,5 @@ rules:
     conflictReviewers:
       - castrojo
       - tulilirockz
-  - base: dev
-    upstream: master # Required. Can be a branch in the same forked repo.
 label: ":arrow_heading_down: pull"
 conflictLabel: "merge-conflict"
